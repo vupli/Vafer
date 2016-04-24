@@ -1,0 +1,28 @@
+<!DOCTYPE SpriteDecomposer>
+<sprites image="cyclop.png" transparentColor="">
+ <animation title="Run" delay="150">
+  <cut w="31" x="34" y="361" h="76" row="1" col="1"/>
+  <cut w="60" x="135" y="361" h="74" row="1" col="1"/>
+  <cut w="55" x="259" y="362" h="75" row="1" col="1"/>
+  <cut w="31" x="397" y="361" h="76" row="1" col="1"/>
+  <cut w="60" x="494" y="360" h="74" row="1" col="1"/>
+  <cut w="56" x="621" y="362" h="75" row="1" col="1"/>
+ </animation>
+ <animation title="Jump" delay="150">
+  <cut w="48" x="22" y="485" h="80" row="1" col="1"/>
+  <cut w="35" x="132" y="485" h="65" row="1" col="1"/>
+  <cut w="44" x="221" y="484" h="67" row="1" col="1"/>
+  <cut w="54" x="320" y="484" h="77" row="1" col="1"/>
+ </animation>
+ <animation title="Fight" delay="150">
+  <cut w="53" x="18" y="603" h="75" row="1" col="1"/>
+  <cut w="48" x="132" y="605" h="73" row="1" col="1"/>
+  <cut w="78" x="244" y="608" h="70" row="1" col="1"/>
+  <cut w="47" x="377" y="606" h="72" row="1" col="1"/>
+  <cut w="71" x="498" y="605" h="73" row="1" col="1"/>
+  <cut w="74" x="632" y="603" h="75" row="1" col="1"/>
+  <cut w="46" x="775" y="603" h="75" row="1" col="1"/>
+  <cut w="17" x="831" y="609" h="18" row="1" col="1"/>
+  <cut w="46" x="906" y="603" h="75" row="1" col="1"/>
+ </animation>
+</sprites>
