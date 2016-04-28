@@ -3,6 +3,8 @@
 
 #include <SFML/Graphics.hpp>
 
+using namespace sf;
+
 class HealthBar
 {
 public:
@@ -39,4 +41,4 @@ public:
 
 };
 
-#endif HEALTHBAR_H
+#endif

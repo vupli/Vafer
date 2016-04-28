@@ -23,29 +23,29 @@ public:
     if (key["L"])
       {
         dir=1;
-        if (STATE!=duck) dx=-0.1;
+        if (STATE!=duck) dx=-0.1f;
         if (STATE==stay) STATE=walk;
       }
 
     if (key["R"])
       {
         dir=0;
-        if (STATE!=duck) dx=0.1;
+        if (STATE!=duck) dx=0.1f;
         if (STATE==stay) STATE=walk;
       }
 
     if (key["Up"])
       {
         if (onLadder) STATE=climb;
-        if (STATE==stay || STATE==walk) { dy=-0.27; STATE=jump; anim.play("jump");}
-        if (STATE==climb) dy=-0.05;
+        if (STATE==stay || STATE==walk) { dy=-0.27f; STATE=jump; anim.play("jump");}
+        if (STATE==climb) dy=-0.05f;
         if (STATE==climb) if (key["L"] || key["R"]) STATE=stay;
       }
 
     if (key["Down"])
       {
         if (STATE==stay || STATE==walk) { STATE=duck; dx=0;}
-        if (STATE==climb) dy=0.05;
+        if (STATE==climb) dy=0.05f;
       }
 
     if (key["Space"])
@@ -84,7 +84,7 @@ public:
     if (STATE==walk) anim.set("walk");
     if (STATE==jump) anim.set("jump");
     if (STATE==duck) anim.set("duck");
-    if (STATE==climb) {anim.set("climb"); anim.pause(); if (dy!=0) anim.play();}
+    if (STATE==climb) {anim.set("climb"); anim.pause(); if (dy!=0.0) anim.play();}
 
     if (shoot) {anim.set("shoot");
         if (STATE==walk) anim.set("shootAndWalk");}
@@ -115,9 +115,11 @@ public:
     Collision(1);
   }
 
+  ~PLAYER() {}
+
   void Collision(int num)
   {
-    for (int i=0;i<obj.size();i++)
+    for (unsigned int i=0;i<obj.size();i++)
       if (getRect().intersects(obj[i].rect))
         {
           if (obj[i].name=="solid")
@@ -132,7 +134,7 @@ public:
 
           if (obj[i].name=="SlopeLeft")
             {  FloatRect r = obj[i].rect;
-              int y0 = (x+w/2-r.left) * r.height/r.width+ r.top - h;
+              int y0 = static_cast<int>( (x+w/2-r.left) * r.height/r.width+ r.top - h );
               if (y>y0)
                 if (x+w/2>r.left)
                   {y = y0; dy=0; STATE=stay;}
@@ -140,7 +142,7 @@ public:
 
           if (obj[i].name=="SlopeRight")
             {   FloatRect r = obj[i].rect;
-              int y0 = - (x+w/2-r.left) * r.height/r.width + r.top+r.height - h;
+              int y0 =  static_cast<int>( - (x+w/2-r.left) * r.height/r.width + r.top+r.height - h);
               if (y > y0)
                 if (x+w/2<r.left+r.width)
                   {y = y0; dy=0; STATE=stay;}
@@ -152,4 +154,4 @@ public:
 };
 
 
-#endif PLAYER_H
+#endif

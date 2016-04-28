@@ -4,13 +4,13 @@
 #include "TinyXML/tinyxml.h"
 #include <SFML/Graphics.hpp>
 
-
+using namespace std;
 using namespace sf;
 
 class Animation
 {
 public:
-  std::vector<IntRect> frames, frames_flip;
+  vector<IntRect> frames, frames_flip;
   float currentFrame, speed;
   bool loop, flip, isPlaying;   // loop показвает зациклена ли анимация. Например анимация взрыва должна проиграться один раз и остановиться, loop=false
   Sprite sprite;
@@ -33,7 +33,7 @@ public:
         if (!loop) {isPlaying=false; return;}
       }
 
-    int i = currentFrame;
+    unsigned int i = static_cast<unsigned>(currentFrame);
     sprite.setTextureRect( frames[i] );
     if (flip) sprite.setTextureRect( frames_flip[i] );
   }
@@ -46,8 +46,8 @@ class AnimationManager
 {
 
 public:
-  std::string currentAnim;
-  std::map<std::string, Animation> animList;
+  string currentAnim;
+  map<string, Animation> animList;
 
   AnimationManager()
   {}
@@ -57,7 +57,7 @@ public:
   }
 
   //создание анимаций вручную
-  void create(std::string name, Texture &texture, int x, int y, int w, int h, int count, float speed, int step=0, bool Loop=true)
+  void create(string name, Texture &texture, int x, int y, int w, int h, int count, float speed, int step=0, bool Loop=true)
   {
     Animation a;
     a.speed = speed;
@@ -75,7 +75,7 @@ public:
   }
 
   //загрузка из файла XML
-  void loadFromXML(std::string fileName,Texture &t)
+  void loadFromXML(string fileName,Texture &t)
   {
     TiXmlDocument animFile(fileName.c_str());
 
@@ -91,7 +91,7 @@ public:
         Animation anim;
         currentAnim = animElement->Attribute("title");
         int delay = atoi(animElement->Attribute("delay"));
-        anim.speed = 1.0/delay; anim.sprite.setTexture(t);
+        anim.speed = 1.0f/delay; anim.sprite.setTexture(t);
 
         TiXmlElement *cut;
         cut = animElement->FirstChildElement("cut");
@@ -114,7 +114,7 @@ public:
       }
   }
 
-  void set(std::string name)
+  void set(string name)
   {
     currentAnim = name;
     animList[currentAnim].flip=0;
@@ -134,7 +134,7 @@ public:
 
   void play()  {animList[currentAnim].isPlaying=true;}
 
-  void play(std::string name)  {animList[name].isPlaying=true;}
+  void play(string name)  {animList[name].isPlaying=true;}
 
   bool isPlaying()  {return animList[currentAnim].isPlaying;}
 
@@ -144,4 +144,4 @@ public:
 
 };
 
-#endif ANIMATION_H
+#endif

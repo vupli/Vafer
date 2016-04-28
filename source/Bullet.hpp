@@ -9,9 +9,9 @@ public:
 
   Bullet(AnimationManager &a, Level &lev,int x,int y,bool dir):Entity(a,x,y)
   {
-    option("Bullet", 0.3, 10, "move");
+    option("Bullet", 0.3f, 10, "move");
 
-    if (dir) dx=-0.3;
+    if (dir) dx=-0.3f;
     obj = lev.GetObjects("solid");
   }
 
@@ -30,6 +30,8 @@ public:
     anim.tick(time);
   }
 
+  ~Bullet() {}
+
 };
 
-#endif BULLET_H
+#endif

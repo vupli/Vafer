@@ -6,10 +6,12 @@
 class MovingPlatform: public Entity
 {
 public:
-  MovingPlatform(AnimationManager &a, Level &lev,int x,int y):Entity(a,x,y)
+  MovingPlatform(AnimationManager &a,int x,int y):Entity(a,x,y)
   {
-    option("MovingPlatform", 0.05, 0, "move");
+    option("MovingPlatform", 0.05f, 0, "move");
   }
+
+  ~MovingPlatform() {}
 
   void update(float time)
   {
@@ -21,4 +23,4 @@ public:
 
 };
 
-#endif MOVINGPLATFORM_H
+#endif

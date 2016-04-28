@@ -8,10 +8,12 @@ class ENEMY: public Entity
 {
 public:
 
-  ENEMY(AnimationManager &a,Level &lev,int x,int y):Entity(a,x,y)
+  ENEMY(AnimationManager &a,int x,int y):Entity(a,x,y)
   {
-    option("Enemy", 0.01, 15, "move");
+    option("Enemy", 0.01f, 15, "move");
   }
+
+  ~ENEMY() {}
 
   void update(float time)
   {
@@ -28,4 +30,4 @@ public:
   }
 };
 
-#endif ENEMY_H
+#endif
